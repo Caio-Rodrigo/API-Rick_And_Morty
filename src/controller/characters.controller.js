@@ -30,11 +30,21 @@ const createCharacter = async (req, res) => {
 
 const updateCharacter = async (req, res) => {
   const id = req.params.id;
-  const editCharacter = await Service.findByIdCharacters(id);
+  const editCharacter = req.body;
+  const Character = await Service.findByIdCharacters(id);
   characterExists(Character, res);
 
   const updateCharacter = await Service.updateCharacter(id, editCharacter);
   res.send(updateCharacter);
+};
+
+const deleteCharacter = async (req, res) => {
+  const id = req.params.id;
+  const character = Service.findByIdCharacters(id);
+  characterExists(Character, res);
+
+  await Service.deleteCharacter(id);
+  res.send({ message: 'character deleted successfully!' });
 };
 
 module.exports = {
@@ -42,4 +52,5 @@ module.exports = {
   findByIdCharacters,
   createCharacter,
   updateCharacter,
+  deleteCharacter,
 };
