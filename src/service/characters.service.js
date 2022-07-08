@@ -9,10 +9,14 @@ const updateCharacter = async (id, editedCharacter) =>
     returnOriginal: false,
   });
 const deleteCharacter = async (id) => await Character.findByIdAndDelete(id);
+const findByCharacterNameService = (name) =>
+  Character.findOne({ name: name });
+
 module.exports = {
   findAllCharacters,
   findByIdCharacters,
   createCharacter,
   updateCharacter,
   deleteCharacter,
+  findByCharacterNameService,
 };
