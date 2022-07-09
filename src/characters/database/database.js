@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
-const wayMongoose = 'mongodb://localhost:27017/rickAndMorty';
 
 function connectToDatabase() {
   mongoose
-    .connect(wayMongoose, {
+    .connect(process.env.DATABASE_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
