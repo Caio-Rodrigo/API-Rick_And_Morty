@@ -3,7 +3,7 @@ const Service = require('../service/characters.service');
 
 function characterExists(Character, res) {
   if (!Character) {
-    return res.status(206).send({ message: 'Character not found!' });
+    return res.status(404).send({ message: 'Character not found!' });
   }
 }
 
@@ -11,7 +11,7 @@ const findAllCharacters = async (req, res) => {
   const allCharacters = await Service.findAllCharacters();
 
   if (allCharacters.length === 0) {
-    return res.status(206).send({ message: 'No characters found' });
+    return res.status(404).send({ message: 'No characters found' });
   }
   res.send(allCharacters);
 };
@@ -49,6 +49,7 @@ const updateCharacter = async (req, res) => {
   characterExists(Character, res);
 
   const updateCharacter = await Service.updateCharacter(id, editCharacter);
+  console.log('chegou no controller')
   res.send(updateCharacter);
 };
 
