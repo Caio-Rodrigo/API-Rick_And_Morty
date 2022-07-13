@@ -35,7 +35,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/character"
+                    "$ref": "#/components/schemas/Character"
                   }
                 }
               }
@@ -69,7 +69,7 @@
               "application/json": {
                 "schemas": {
                   "type": "object",
-                  "$ref": "#/components/schemas/character"
+                  "$ref": "#/components/schemas/Character"
                 }
               }
             }
@@ -89,7 +89,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "$ref": "#/components/schemas/character"
+                "$ref": "#/components/schemas/Character"
               },
               "example": {
                 "name": "Morty Smith",
@@ -110,7 +110,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/character"
+                  "$ref": "#/components/schemas/Character"
                 }
               }
             }
@@ -137,7 +137,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/character"
+                "$ref": "#/components/schemas/Character"
               },
               "example": {
                 "name": "Morty Smith",
@@ -156,7 +156,7 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "$ref": "#/components/schemas/character"
+                  "$ref": "#/components/schemas/Character"
                 }
               }
             }
@@ -191,7 +191,7 @@
     },
     "components": {
       "schemas": {
-        "character": {
+        "Character": {
           "type": "object",
           "properties": {
             "name": {
