@@ -8,8 +8,9 @@ router.use('/api-docs', swaggerUi.serve);
 router.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
 router.get('/', user.findAllUser);
+router.post('/login',user.loginUser) 
 router.post('/', Check, user.createrUser);
 router.put('/edit/:user/:password',)
-router;
+
 
 module.exports = router;
