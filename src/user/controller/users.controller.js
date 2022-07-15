@@ -40,7 +40,9 @@ const loginUser = async (req, res) => {
     return res.status(400).send({ message: 'invalid password' });
   }
 
-  res.send(log);
+  const token = Service.genereToken(log._id)
+
+  res.send({token});
 };
 
 module.exports = {
