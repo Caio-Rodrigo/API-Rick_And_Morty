@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 function Check(req, res, next) {
   const { user, username, email, password } = req.body;
 
@@ -24,23 +26,5 @@ function Check(req, res, next) {
 
   next();
 }
-
-// const nonExistingUser (req, res, next) {
-//   const { user, email } = req.body;
-
-//   const nonExtantUser = await Service.findByUserService(user);
-//   if (!nonExtantUser) {
-//     return res.status(203).send({
-//       message: 'User already registered!',
-//     });
-//   }
-//   const nonExtantEmail = await Service.findByEmailService(email);
-//   if (!nonExtantEmail) {
-//     return res.status(203).send({
-//       message: 'Email already registered!',
-//     });
-//   }
-//   next()
-// }
 
 module.exports = Check;
