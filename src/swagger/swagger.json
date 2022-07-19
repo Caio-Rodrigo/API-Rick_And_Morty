@@ -1,0 +1,352 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Rick and Morty",
+    "description": "API for Rick and Morty characters brute",
+    "termsOfService": "",
+    "contact": {
+      "name": "Caio Rodrigo",
+      "email": "caio4866@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "service": [
+    {
+      "url": "http://localhost:3000/characters",
+      "description": "test API"
+    }
+  ],
+  "paths": {
+    "/characters/": {
+      "get": {
+        "summary": "List all Characters",
+        "description": "Route responsible for listing all characters",
+        "tags": [
+          "Characters"
+        ],
+        "security": [
+          {
+            "bearerLogin": []
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Character"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new Character",
+        "description": "Route responsible to create a new Character",
+        "tags": [
+          "Characters"
+        ],
+        "security": [
+          {
+            "bearerLogin": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/Character"
+              },
+              "example": {
+                "name": "Morty Smith",
+                "picture": "https://static.wikia.nocookie.net/rickandmorty/images/e/ee/Morty501.png/revision/latest?cb=20210827150137"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "203": {
+            "description": "Character already registered!"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Character"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/characters/{id}": {
+      "get": {
+        "summary": "Get Character by ID",
+        "description": "Route responsible to get a character by ID",
+        "tags": [
+          "Characters"
+        ],
+        "security": [
+          {
+            "bearerLogin": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Character ID to search",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schemas": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Character"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a Character",
+        "description": "route responsible for editing a character through an ID",
+        "tags": [
+          "Characters"
+        ],
+        "security": [
+          {
+            "bearerLogin": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the character to update",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Character"
+              },
+              "example": {
+                "name": "Morty Smith",
+                "picture": "https://static.wikia.nocookie.net/rickandmorty/images/e/ee/Morty501.png/revision/latest?cb=20210827150137"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Invalid ID"
+          },
+          "200": {
+            "description": "character updated successfully!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Character"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a character by ID",
+        "description": "Delete a character by its ID",
+        "tags": [
+          "Characters"
+        ],
+        "security": [
+          {
+            "bearerLogin": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Character ID for deletion",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/": {
+      "get": {
+        "summary": "List all users",
+        "description": "Route responsible for listing all users",
+        "tags": [
+          "User"
+        ],
+        "security": [
+          {
+            "bearerLogin": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No user found!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new User",
+        "description": "Route responsible to create a new User",
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/User"
+              },
+              "example": {
+                "user": "Tiao",
+                "username": "Sebastino",
+                "email": "tiaoSebastiao@gmail.com",
+                "password": "1234",
+                "avatar": " "
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Some fields are missing or user already exists"
+          },
+          "500": {
+            "description": "Error creating User"
+          },
+          "200": {
+            "description": "User created successfully"
+          }
+        }
+      }
+    },
+    "/log/": {
+      "post": {
+        "summary": "Enter the account",
+        "description": "Route responsible for the login of a registered user",
+        "tags": [
+          "Login"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/User"
+              },
+              "example": {
+                "email": "tiaoSebastiao@gmail.com",
+                "password": "1234"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "User not found!"
+          },
+          "406": {
+            "description": "invalid password"
+          },
+          "200": {
+            "description": "OK!"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerLogin": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "Character": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "picture": {
+            "type": "string"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

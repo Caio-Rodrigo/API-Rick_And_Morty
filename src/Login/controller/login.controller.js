@@ -9,7 +9,7 @@ const loginUser = async (req, res) => {
     const log = users || emails;
   
     if (!log) {
-      return res.status(200).send({ message: 'User not found!' });
+      return res.status(400).send({ message: 'User not found!' });
     }
   
     const isPasswordValid = await bcrypt.compare(password, log.password);

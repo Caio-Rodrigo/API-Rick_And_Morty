@@ -16,7 +16,7 @@ const createrUser = async (req, res) => {
   );
 
   if (!newUser) {
-    return res.status(400).send({ error: 'Error creating User' });
+    return res.status(500).send({ error: 'Error creating User' });
   }
 
   res.status(201).send(newUser);

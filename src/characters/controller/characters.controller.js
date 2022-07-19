@@ -10,11 +10,15 @@ function characterExists(Character, res) {
 const findAllCharacters = async (req, res) => {
   const allCharacters = await Service.findAllCharacters();
 
-  if (allCharacters.length === 0) {
+   if (allCharacters.length === 0) {
     return res.status(200).send({ message: 'No characters found' });
   }
+
+
+
   res.send(allCharacters);
 };
+
 
 const findByIdCharacters = async (req, res) => {
   const id = req.params.id;
