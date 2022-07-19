@@ -12,7 +12,7 @@
   },
   "service": [
     {
-      "url": "http://localhost:3000/characters",
+      "url": "https://api-rick-and-morny-blue-caio.herokuapp.com/api/",
       "description": "test API"
     }
   ],
